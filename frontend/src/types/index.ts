@@ -13,7 +13,7 @@ export interface Category {
 export interface Item {
   id: number;
   name: string;
-  eid: number;
+  eid: string;  // 문자열로 변경
   category: Category;
   status: string;
   uuid: string;
@@ -50,14 +50,14 @@ export interface CategoryCreate {
 
 export interface ItemCreate {
   name: string;
-  eid: number;
+  eid: string;  // 문자열로 변경
   category_id: number;
   status: string;
 }
 
 export interface ItemUpdate {
   name?: string;
-  eid?: number;
+  eid?: string;  // 문자열로 변경
   category_id?: number;
   status?: string;
 }

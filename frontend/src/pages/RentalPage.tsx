@@ -2,7 +2,8 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { createRental, returnRental } from '../api/rentals';
-import QRScanner from '../components/QRScanner';
+// TODO: v2.0에서 QR 기능 활성화
+// import QRScanner from '../components/QRScanner';
 import type { Rental, ItemWithStatus } from '../types';
 import './RentalPage.css';
 
@@ -24,14 +25,14 @@ export default function RentalPage() {
   const [step, setStep] = useState<Step>('prompt');
   const [result, setResult] = useState<Rental | null>(null);
   const [error, setError] = useState('');
-  const [manualUuid, setManualUuid] = useState('');
+  const [manualEid, setManualEid] = useState('');
   const [selectedItem, setSelectedItem] = useState<ItemWithStatus | null>(locationState?.item || null);
 
   const reset = () => {
     setStep('prompt');
     setResult(null);
     setError('');
-    setManualUuid('');
+    setManualEid('');
     setSelectedItem(null);
   };
 
@@ -40,14 +41,14 @@ export default function RentalPage() {
     reset();
   };
 
-  const processUuid = async (uuid: string) => {
+  const processEid = async (eid: string) => {
     if (!token) return;
     setStep('loading');
     setError('');
     try {
       const data = mode === 'rent'
-        ? await createRental(uuid, token)
-        : await returnRental(uuid, token);
+        ? await createRental(eid, token)
+        : await returnRental(eid, token);
       setResult(data);
       setStep('success');
     } catch (err: any) {
@@ -58,12 +59,12 @@ export default function RentalPage() {
 
   const handleManualSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (manualUuid.trim()) processUuid(manualUuid.trim());
+    if (manualEid.trim()) processEid(manualEid.trim());
   };
 
   const handleConfirmRental = () => {
     if (selectedItem) {
-      processUuid(selectedItem.uuid);
+      processEid(selectedItem.eid);
     }
   };
 
@@ -97,8 +98,11 @@ export default function RentalPage() {
             <div className="confirm-item-info">
               <p className="confirm-item-name">{selectedItem.name}</p>
               <p className="confirm-item-detail">물품번호: {selectedItem.eid}</p>
-              <p className="confirm-item-detail">고유번호: {selectedItem.uuid}</p>
               <p className="confirm-item-category">{selectedItem.category.title}</p>
+            </div>
+            <div className="confirm-penalty-notice">
+              <p className="penalty-warning">⚠️ 대여하지 않은 물품을 무단으로 가져갈 경우</p>
+              <p className="penalty-text">학생복지위원회 규정에 따라 제재를 받을 수 있습니다.</p>
             </div>
             <div className="confirm-btns">
               <button className="confirm-cancel-btn" onClick={handleCancelConfirm}>취소</button>
@@ -110,27 +114,30 @@ export default function RentalPage() {
 
       {step === 'prompt' && (
         <div className="rental-prompt">
-          <p>아래 버튼을 클릭하여<br />물품의 QR코드를 스캔하세요</p>
-          <button className="scan-btn" onClick={() => setStep('scanning')}>QR코드 스캔</button>
+          {/* TODO: v2.0에서 QR 기능 활성화 */}
+          {/* <p>아래 버튼을 클릭하여<br />물품의 QR코드를 스캔하세요</p> */}
+          {/* <button className="scan-btn" onClick={() => setStep('scanning')}>QR코드 스캔</button> */}
 
+          <p>물품번호(eid)를 입력하세요</p>
           <form className="manual-form" onSubmit={handleManualSubmit}>
             <input
               type="text"
-              placeholder="테스트용: UUID 직접 입력"
-              value={manualUuid}
-              onChange={(e) => setManualUuid(e.target.value)}
+              placeholder="물품번호(eid) 입력"
+              value={manualEid}
+              onChange={(e) => setManualEid(e.target.value)}
             />
-            <button type="submit">입력</button>
+            <button type="submit">확인</button>
           </form>
         </div>
       )}
 
-      {step === 'scanning' && (
+      {/* TODO: v2.0에서 QR 기능 활성화 */}
+      {/* {step === 'scanning' && (
         <QRScanner
-          onScan={processUuid}
+          onScan={processEid}
           onClose={() => setStep('prompt')}
         />
-      )}
+      )} */}
 
       {step === 'loading' && <div className="loading">처리 중...</div>}
 

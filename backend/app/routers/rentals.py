@@ -22,7 +22,7 @@ async def create_rental(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    item = db.query(WelfareItem).filter(WelfareItem.uuid == rental.item_uuid).first()
+    item = db.query(WelfareItem).filter(WelfareItem.eid == rental.item_eid).first()
     if not item:
         raise HTTPException(status_code=404, detail="해당 물품을 찾을 수 없습니다")
     if item.status != "정상":
@@ -56,7 +56,7 @@ async def return_rental(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    item = db.query(WelfareItem).filter(WelfareItem.uuid == rental.item_uuid).first()
+    item = db.query(WelfareItem).filter(WelfareItem.eid == rental.item_eid).first()
     if not item:
         raise HTTPException(status_code=404, detail="해당 물품을 찾을 수 없습니다")
 

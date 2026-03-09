@@ -8,11 +8,11 @@ from .user import UserResponse
 
 
 class RentalCreate(BaseModel):
-    item_uuid: str       # QR코드에서 받은 uuid
+    item_eid: str       # 물품 번호(eid)
 
 
 class RentalReturn(BaseModel):
-    item_uuid: str
+    item_eid: str       # 물품 번호(eid)
 
 
 class RentalResponse(BaseModel):

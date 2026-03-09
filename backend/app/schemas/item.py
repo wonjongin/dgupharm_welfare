@@ -7,14 +7,14 @@ from .category import CategoryResponse
 
 class ItemCreate(BaseModel):
     name: str
-    eid: int
+    eid: str  # 문자열로 변경
     category_id: int
     status: str = "정상"
 
 
 class ItemUpdate(BaseModel):
     name: Optional[str] = None
-    eid: Optional[int] = None
+    eid: Optional[str] = None  # 문자열로 변경
     category_id: Optional[int] = None
     status: Optional[str] = None
 
@@ -22,7 +22,7 @@ class ItemUpdate(BaseModel):
 class ItemResponse(BaseModel):
     id: int
     name: str
-    eid: int
+    eid: str  # 문자열로 변경
     category: CategoryResponse
     status: str
     uuid: str
@@ -35,7 +35,7 @@ class ItemResponse(BaseModel):
 class ItemWithStatusResponse(BaseModel):
     id: int
     name: str
-    eid: int
+    eid: str  # 문자열로 변경
     category: CategoryResponse
     status: str
     uuid: str

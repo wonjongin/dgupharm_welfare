@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { getItems, createItem, updateItem, deleteItem } from '../api/items';
 import { getCategories } from '../api/categories';
-import { QRCodeSVG } from 'qrcode.react';
+// TODO: v2.0에서 QR 기능 활성화
+// import { QRCodeSVG } from 'qrcode.react';
 import type { Item, Category, ItemCreate, ItemUpdate } from '../types';
 import './AdminPage.css';
 
@@ -24,7 +25,8 @@ export default function AdminItemPage() {
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<number | null>(null);
   const [form, setForm] = useState<FormData>(INIT_FORM);
-  const [qrItem, setQrItem] = useState<Item | null>(null);
+  // TODO: v2.0에서 QR 기능 활성화
+  // const [qrItem, setQrItem] = useState<Item | null>(null);
 
   const fetchAll = async () => {
     const [i, c] = await Promise.all([getItems(), getCategories()]);
@@ -39,7 +41,7 @@ export default function AdminItemPage() {
     if (!token) return;
     const payload: ItemCreate | ItemUpdate = {
       name: form.name,
-      eid: Number(form.eid),
+      eid: form.eid,  // 문자열 그대로 사용
       category_id: Number(form.category_id),
       status: form.status,
     };
@@ -75,7 +77,7 @@ export default function AdminItemPage() {
 
   const openEdit = (item: Item) => {
     setEditId(item.id);
-    setForm({ name: item.name, eid: String(item.eid), category_id: String(item.category.id), status: item.status });
+    setForm({ name: item.name, eid: item.eid, category_id: String(item.category.id), status: item.status });
     setShowForm(true);
   };
 
@@ -103,7 +105,7 @@ export default function AdminItemPage() {
         <div className="admin-form-card">
           <form onSubmit={handleSubmit}>
             <input type="text" placeholder="물품 이름" value={form.name} onChange={set('name')} required />
-            <input type="number" placeholder="물품 번호(eid)" value={form.eid} onChange={set('eid')} required />
+            <input type="text" placeholder="물품 번호(eid)" value={form.eid} onChange={set('eid')} required />
             <select value={form.category_id} onChange={set('category_id')} required>
               <option value="">카테고리 선택</option>
               {categories.map((c) => <option key={c.id} value={c.id}>{c.title}</option>)}
@@ -121,7 +123,8 @@ export default function AdminItemPage() {
         </div>
       )}
 
-      {qrItem && (
+      {/* TODO: v2.0에서 QR 기능 활성화 */}
+      {/* {qrItem && (
         <div className="qr-modal-bg" onClick={() => setQrItem(null)}>
           <div className="qr-modal-card" onClick={(e) => e.stopPropagation()}>
             <h3>{qrItem.name}</h3>
@@ -130,7 +133,7 @@ export default function AdminItemPage() {
             <button className="qr-close-btn" onClick={() => setQrItem(null)}>닫기</button>
           </div>
         </div>
-      )}
+      )} */}
 
       <div className="admin-list">
         {items.map((item) => (
@@ -141,7 +144,8 @@ export default function AdminItemPage() {
               <p className={`admin-status ${item.status}`}>{item.status}</p>
             </div>
             <div className="admin-item-actions">
-              <button className="btn-qr" onClick={() => setQrItem(item)}>QR</button>
+              {/* TODO: v2.0에서 QR 기능 활성화 */}
+              {/* <button className="btn-qr" onClick={() => setQrItem(item)}>QR</button> */}
               <button className="btn-edit" onClick={() => openEdit(item)}>수정</button>
               <button className="btn-delete" onClick={() => handleDelete(item.id)}>삭제</button>
             </div>
