@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { getMyRentals, returnRental } from '../api/rentals';
 import type { Rental } from '../types';

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, FormEvent } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect, FormEvent } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { createRental, returnRental } from '../api/rentals';
 // TODO: v2.0에서 QR 기능 활성화
@@ -18,7 +18,6 @@ interface LocationState {
 export default function RentalPage() {
   const token = useAuthStore((state) => state.token);
   const location = useLocation();
-  const navigate = useNavigate();
   const locationState = location.state as LocationState | null;
 
   const [mode, setMode] = useState<Mode>(locationState?.mode || 'rent');

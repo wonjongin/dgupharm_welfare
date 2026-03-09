@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import { useState, FormEvent } from 'react';
 import { useAuthStore } from '../store/authStore';
 import './LoginPage.css';
 
@@ -8,7 +8,7 @@ export default function LoginPage() {
 
   const [sid, setSid] = useState('');
   const [name, setName] = useState('');
-  const [isRegister, setIsRegister] = useState(false);
+  const [isRegister] = useState(false);  // 현재는 로그인만 사용
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
