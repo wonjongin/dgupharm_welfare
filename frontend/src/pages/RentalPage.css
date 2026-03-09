@@ -1,0 +1,247 @@
+.rental-confirm {
+  padding: 24px 16px;
+}
+
+.confirm-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 2px solid #f1f3f5;
+}
+
+.confirm-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #212529;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.confirm-item-info {
+  background: #f8f9fa;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.confirm-item-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.confirm-item-detail {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.confirm-item-category {
+  font-size: 13px;
+  color: #FF6B35;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e9ecef;
+}
+
+.confirm-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.confirm-btns button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.confirm-cancel-btn {
+  background: #6c757d;
+  color: #fff;
+}
+
+.confirm-cancel-btn:active {
+  transform: scale(0.98);
+}
+
+.confirm-rent-btn {
+  background: linear-gradient(135deg, #FF6B35, #FF8C42);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.confirm-rent-btn:active {
+  transform: scale(0.98);
+}
+
+.rental-tabs {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.rental-tab {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #FF6B35;
+  background: #fff;
+  color: #FF6B35;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.rental-tab.active {
+  background: linear-gradient(135deg, #FF6B35, #FF8C42);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.rental-prompt {
+  text-align: center;
+  padding: 40px 24px 24px;
+}
+
+.rental-prompt p {
+  color: #495057;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.scan-btn {
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #FF6B35, #FF8C42);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 18px 48px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.3);
+  transition: all 0.2s;
+}
+
+.scan-btn:hover {
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+}
+
+.scan-btn:active {
+  transform: scale(0.98);
+}
+
+.manual-form {
+  margin-top: 36px;
+  display: flex;
+  gap: 8px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.manual-form input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.manual-form input:focus {
+  border-color: #FF6B35;
+}
+
+.manual-form button {
+  padding: 12px 20px;
+  background: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rental-error {
+  margin: 24px 16px;
+  background: #fff5f5;
+  border: 2px solid #ffdddd;
+  border-radius: 16px;
+  padding: 32px 20px;
+  text-align: center;
+}
+
+.rental-error p {
+  color: #dc3545;
+  font-size: 15px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.retry-btn {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rental-success {
+  margin: 24px 16px;
+  background: #d1f4e8;
+  border: 2px solid #a8e6d0;
+  border-radius: 16px;
+  padding: 36px 20px;
+  text-align: center;
+}
+
+.rental-success h3 {
+  color: #0ca678;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.rental-success p {
+  color: #212529;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.done-btn {
+  margin-top: 20px;
+  background: #20c997;
+  color: #fff;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.done-btn:active {
+  transform: scale(0.98);
+}

@@ -1,0 +1,182 @@
+.rental-list {
+  padding: 12px 16px;
+}
+
+.rental-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 2px solid #f1f3f5;
+  border-top: 4px solid #FF6B35;
+  transition: all 0.2s;
+}
+
+.rental-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.rental-card.clickable {
+  cursor: pointer;
+}
+
+.rental-card.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.15);
+  border-color: #FF6B35;
+}
+
+.rental-card.clickable:active {
+  transform: translateY(0);
+}
+
+.rental-card.returned {
+  border-top-color: #20c997;
+  opacity: 0.8;
+}
+
+.rental-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.rental-card-header h3 {
+  font-size: 16px;
+  color: #212529;
+  font-weight: 600;
+}
+
+.rental-status {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 16px;
+}
+
+.rental-status.active {
+  background: #ffe8de;
+  color: #FF6B35;
+}
+
+.rental-status.returned {
+  background: #d1f4e8;
+  color: #0ca678;
+}
+
+.rental-card p {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 4px;
+}
+
+.return-hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #FF6B35;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 8px;
+  border-top: 1px dashed #FFB89A;
+}
+
+/* ========== 반납 확인 모달 ========== */
+.return-modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  backdrop-filter: blur(4px);
+  padding: 20px;
+}
+
+.return-modal-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 24px 24px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.return-modal-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #212529;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.return-item-info {
+  background: #f8f9fa;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.return-item-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.return-item-detail {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.return-item-date {
+  font-size: 13px;
+  color: #495057;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.return-modal-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.return-modal-btns button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.return-modal-btns button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.return-cancel-btn {
+  background: #6c757d;
+  color: #fff;
+}
+
+.return-cancel-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.return-confirm-btn {
+  background: linear-gradient(135deg, #20c997, #17a589);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(32, 201, 151, 0.3);
+}
+
+.return-confirm-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
