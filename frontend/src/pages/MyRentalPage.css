@@ -141,6 +141,18 @@
   text-align: center;
 }
 
+.return-notice {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e67700;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+}
+
 .return-modal-btns {
   display: flex;
   gap: 10px;

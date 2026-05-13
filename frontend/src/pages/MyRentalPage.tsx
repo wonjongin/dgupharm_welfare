@@ -34,7 +34,7 @@ export default function MyRentalPage() {
     if (!selectedRental || !token) return;
     setReturning(true);
     try {
-      await returnRental(selectedRental.item.uuid, token);
+      await returnRental(selectedRental.item.eid, token);
       setSelectedRental(null);
       loadRentals(); // 목록 새로고침
     } catch (err) {
@@ -96,6 +96,9 @@ export default function MyRentalPage() {
               <p className="return-item-detail">고유번호: {selectedRental.item.uuid}</p>
               <p className="return-item-date">대여일: {selectedRental.rental_start}</p>
               <p className="return-item-date">반납기한: {selectedRental.rental_end}</p>
+              {selectedRental.item.category.title === '보조배터리' && (
+                <p className="return-notice">⚠️ 보조배터리는 학생회실에 직접 반납해 주세요.</p>
+              )}
             </div>
             <div className="return-modal-btns">
               <button
