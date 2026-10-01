@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { getMyRentals, returnRental } from '../api/rentals';
+import { formatDateTime } from '../utils/rentalStatus';
 import type { Rental } from '../types';
 import './MyRentalPage.css';
 
@@ -72,10 +73,10 @@ export default function MyRentalPage() {
               </span>
             </div>
             <p>물품번호: {r.item.eid}</p>
-            <p>대여일: {r.rental_start}</p>
+            <p>대여: {formatDateTime(r.rental_start)}</p>
             <p>반납기한: {r.rental_end}</p>
             {r.is_returned && r.return_date && (
-              <p>반납일: {r.return_date}</p>
+              <p>반납: {formatDateTime(r.return_date)}</p>
             )}
             {!r.is_returned && (
               <p className="return-hint">탭하여 반납하기</p>
@@ -94,7 +95,7 @@ export default function MyRentalPage() {
               <p className="return-item-name">{selectedRental.item.name}</p>
               <p className="return-item-detail">물품번호: {selectedRental.item.eid}</p>
               <p className="return-item-detail">고유번호: {selectedRental.item.uuid}</p>
-              <p className="return-item-date">대여일: {selectedRental.rental_start}</p>
+              <p className="return-item-date">대여: {formatDateTime(selectedRental.rental_start)}</p>
               <p className="return-item-date">반납기한: {selectedRental.rental_end}</p>
               {selectedRental.item.category.title === '보조배터리' && (
                 <p className="return-notice">⚠️ 보조배터리는 학생회실에 직접 반납해 주세요.</p>

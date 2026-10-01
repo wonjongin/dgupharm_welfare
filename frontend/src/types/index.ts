@@ -27,9 +27,9 @@ export interface Rental {
   id: number;
   borrower: User;
   item: Item;
-  rental_start: string;  // 대여 시작일
-  rental_end: string;  // 반납 기한
-  return_date: string | null;  // 실제 반납일
+  rental_start: string;  // 대여 일시 (YYYY-MM-DDTHH:MM:SS)
+  rental_end: string;  // 반납 기한 (YYYY-MM-DD)
+  return_date: string | null;  // 실제 반납 일시
   is_returned: boolean;
 }
 

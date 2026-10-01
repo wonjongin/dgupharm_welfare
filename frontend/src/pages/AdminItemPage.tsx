@@ -1,11 +1,11 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { getItems, createItem, updateItem, deleteItem } from '../api/items';
 import { getCategories } from '../api/categories';
 // TODO: v2.0에서 QR 기능 활성화
 // import { QRCodeSVG } from 'qrcode.react';
 import type { Item, Category, ItemCreate, ItemUpdate } from '../types';
+import AdminTabs from '../components/AdminTabs';
 import './AdminPage.css';
 
 interface FormData {
@@ -19,7 +19,6 @@ const INIT_FORM: FormData = { name: '', eid: '', category_id: '', status: '정�
 
 export default function AdminItemPage() {
   const token = useAuthStore((state) => state.token);
-  const navigate = useNavigate();
   const [items, setItems] = useState<Item[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [showForm, setShowForm] = useState(false);
@@ -96,10 +95,7 @@ export default function AdminItemPage() {
         <button className="admin-add-btn" onClick={openAdd}>+ 추가</button>
       </header>
 
-      <div className="admin-sub-tabs">
-        <button className="admin-sub-tab active">물품</button>
-        <button className="admin-sub-tab" onClick={() => navigate('/admin/categories')}>카테고리</button>
-      </div>
+      <AdminTabs />
 
       {showForm && (
         <div className="admin-form-card">

@@ -127,6 +127,13 @@ async def delete_item(
     if not db_item:
         raise HTTPException(status_code=404, detail="물품을 찾을 수 없습니다")
 
+    # 대여기록이 참조하는 물품을 지우면 기록이 깨지므로 삭제 대신 상태 변경을 유도
+    if db.query(RentalRecord).filter(RentalRecord.item_id == item_id).first():
+        raise HTTPException(
+            status_code=400,
+            detail="대여기록이 있는 물품은 삭제할 수 없습니다. 상태를 '폐기' 또는 '분실'로 변경해 주세요",
+        )
+
     db.delete(db_item)
     db.commit()
     return {"message": "물품이 삭제되었습니다"}

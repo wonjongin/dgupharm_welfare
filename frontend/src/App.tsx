@@ -8,6 +8,8 @@ import CategoryPage from './pages/CategoryPage';
 import ItemListPage from './pages/ItemListPage';
 import RentalPage from './pages/RentalPage';
 import MyRentalPage from './pages/MyRentalPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
+import AdminRentalPage from './pages/AdminRentalPage';
 import AdminItemPage from './pages/AdminItemPage';
 import AdminCategoryPage from './pages/AdminCategoryPage';
 
@@ -33,6 +35,8 @@ function AppRoutes() {
         <Route path="/items/:categoryId" element={<ItemListPage />} />
         <Route path="/rental" element={<RentalPage />} />
         <Route path="/my-rentals" element={<MyRentalPage />} />
+        <Route path="/admin" element={isAdmin ? <AdminDashboardPage /> : <Navigate to="/" />} />
+        <Route path="/admin/rentals" element={isAdmin ? <AdminRentalPage /> : <Navigate to="/" />} />
         <Route path="/admin/items" element={isAdmin ? <AdminItemPage /> : <Navigate to="/" />} />
         <Route path="/admin/categories" element={isAdmin ? <AdminCategoryPage /> : <Navigate to="/" />} />
         <Route path="*" element={<Navigate to="/" />} />

@@ -46,7 +46,7 @@ export default function Navbar() {
       {user && user.permission === 1 && (
         <button
           className={`nav-btn ${location.pathname.startsWith('/admin') ? 'active' : ''}`}
-          onClick={() => navigate('/admin/items')}
+          onClick={() => navigate('/admin')}
         >
           <span className="nav-icon"><IoSettings size={22} /></span>
           <span className="nav-label">관리</span>

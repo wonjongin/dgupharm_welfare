@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -14,6 +14,12 @@ from ..schemas.rental import RentalCreate, RentalReturn, RentalResponse
 router = APIRouter(prefix="/api/v1/rentals", tags=["rentals"])
 
 RENTAL_DAYS = 7  # 기본 대여 기간(일)
+KST = timezone(timedelta(hours=9))
+
+
+def now_kst() -> datetime:
+    """서버 시간대와 무관하게 한국 시간 기준 현재 시각 (DB에는 naive로 저장)"""
+    return datetime.now(KST).replace(tzinfo=None, microsecond=0)
 
 
 @router.post("/", response_model=RentalResponse)
@@ -36,12 +42,12 @@ async def create_rental(
     ):
         raise HTTPException(status_code=400, detail="이미 대여 중인 물품입니다")
 
-    today = date.today()
+    now = now_kst()
     record = RentalRecord(
         borrower_id=current_user.id,
         item_id=item.id,
-        rental_start=today,
-        rental_end=today + timedelta(days=RENTAL_DAYS),
+        rental_start=now,
+        rental_end=now.date() + timedelta(days=RENTAL_DAYS),
         is_returned=False,
     )
     db.add(record)
@@ -73,7 +79,7 @@ async def return_rental(
         raise HTTPException(status_code=400, detail="해당 물품의 활성 대여기록이 없습니다")
 
     record.is_returned = True
-    record.return_date = date.today()  # 실제 반납일 기록 (rental_end는 반납 기한으로 유지)
+    record.return_date = now_kst()  # 실제 반납 일시 기록 (rental_end는 반납 기한으로 유지)
     db.commit()
     db.refresh(record)
     return record

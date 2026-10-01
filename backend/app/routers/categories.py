@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from ..auth.jwt import get_admin_user
 from ..database import get_db
 from ..models.category import ItemCategory
+from ..models.item import WelfareItem
 from ..models.user import User
 from ..schemas.category import CategoryCreate, CategoryUpdate, CategoryResponse
 
@@ -67,6 +68,12 @@ async def delete_category(
     db_cat = db.query(ItemCategory).filter(ItemCategory.id == category_id).first()
     if not db_cat:
         raise HTTPException(status_code=404, detail="카테고리를 찾을 수 없습니다")
+
+    if db.query(WelfareItem).filter(WelfareItem.category_id == category_id).first():
+        raise HTTPException(
+            status_code=400,
+            detail="물품이 등록된 카테고리는 삭제할 수 없습니다. 물품을 먼저 다른 카테고리로 옮겨 주세요",
+        )
 
     db.delete(db_cat)
     db.commit()

@@ -1,13 +1,12 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { getCategories, createCategory, updateCategory, deleteCategory } from '../api/categories';
 import type { Category } from '../types';
+import AdminTabs from '../components/AdminTabs';
 import './AdminPage.css';
 
 export default function AdminCategoryPage() {
   const token = useAuthStore((state) => state.token);
-  const navigate = useNavigate();
   const [categories, setCategories] = useState<Category[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<number | null>(null);
@@ -57,10 +56,7 @@ export default function AdminCategoryPage() {
         <button className="admin-add-btn" onClick={openAdd}>+ 추가</button>
       </header>
 
-      <div className="admin-sub-tabs">
-        <button className="admin-sub-tab" onClick={() => navigate('/admin/items')}>물품</button>
-        <button className="admin-sub-tab active">카테고리</button>
-      </div>
+      <AdminTabs />
 
       {showForm && (
         <div className="admin-form-card">
